@@ -3,18 +3,19 @@
   "version": "1.0.0",
   "description": "product survey app for 99x tecnology clients",
   "main": "index.js",
-
   "scripts": {
     "start": "webpack-dev-server --open"
   },
-
-  "babel":{
-    "presets": ["env", "react"]
+  "babel": {
+    "presets": [
+      "env",
+      "react"
+    ]
   },
-
   "author": "Achala Dissanayake",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.16.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
   },

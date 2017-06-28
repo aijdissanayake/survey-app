@@ -20,17 +20,9 @@ class App extends React.Component {
 		var i = 0;
 		api.fetchSurveys().then(function(surveys) {
 			var newsurveys = [];
-			//newsurveys = surveys;
 			 for ( i = 0; i < surveys.length; i++){
 				newsurveys.push(surveys[i]);
-			console.log(i);
 			 }
-			
-			
-			// // newsurveys.push(surveys[0]);
-			// console.log(surveys);
-			// console.log(surveys.length);
-
 
 			this.setState(function() {
 				return {
@@ -60,9 +52,7 @@ class App extends React.Component {
 
 
   render() {
-  	// var surveys = ['Digital Marketing', 'Product Management', 'UX', 'Product Support'];
   	var surveys = this.state.surveys;
-  	// console.log(this.state.surveys);
   	if(this.state.surveys === null){
   		return (<div> </div>)
   	}

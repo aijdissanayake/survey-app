@@ -1,7 +1,7 @@
 var React = require('react');
 var api = require('../utils/api');
 var PropTypes = require('prop-types');
-
+var Link = require('react-router-dom').Link;
 
 
 class Front extends React.Component {
@@ -10,7 +10,7 @@ class Front extends React.Component {
 		super(props);
 		this.state = {
 			title: null,
-			selectedSurvey: "All",
+			selectedSurvey: "not-selected",
 			surveyDetails:null,
 			surveys:null
 		};
@@ -68,13 +68,23 @@ class Front extends React.Component {
 			return (<div> Loading..</div>)
 		}
 		else{
-			return (
-				<div>
-				<Title title = {this.state.title}/>
-				<AreaTitles areaTitles = {this.state.surveys} selectedAreaTitle = {this.state.selectedSurvey} onClick = {this.updateSurvey}/>
-				<AreaDesc surveyDetails = {this.state.surveyDetails} />
-				</div>
+			if (this.state.selectedSurvey === 'not-selected') {
+				return (
+					<div>
+					<Title title = {this.state.title}/>
+					<AreaTitles areaTitles = {this.state.surveys} selectedAreaTitle = {this.state.selectedSurvey} onClick = {this.updateSurvey}/>
+					</div>
 				)
+			}
+			else{
+				return (
+					<div>
+					<Title title = {this.state.title}/>
+					<AreaTitles areaTitles = {this.state.surveys} selectedAreaTitle = {this.state.selectedSurvey} onClick = {this.updateSurvey}/>
+					<AreaDesc  selectedAreaTitle = {this.state.selectedSurvey}  />
+					</div>
+				)
+			}
 		}
 	}
 }
@@ -84,8 +94,9 @@ class Front extends React.Component {
 function AreaDesc (props){
 	return (
 		<div className = 'surveys' >
-		<h3> Area Description Goes Here</h3>			
-		<p> Selected At :  {JSON.stringify(props.surveyDetails,null,2)}</p>
+		<h3> Area Description Goes Here</h3>
+		<p> {props.selectedAreaTitle} </p>
+		<Link className = 'button' to='/survey'>survey</Link>
 		</div>
 		)
 }

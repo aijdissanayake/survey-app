@@ -1,12 +1,20 @@
 var React = require('react');
 var Front = require('./Front');
+var Quiz = require('./Quiz');
+var ReactRouter = require('react-router-dom');
+var Router = ReactRouter.BrowserRouter;
+var Route = ReactRouter.Route;
+var Switch = ReactRouter.Switch;
 
 class App extends React.Component {
   render() {
     return (
-      <div className='container'>
-        <Front/>
-      </div>
+    	<Router>
+	      <div className='container'>
+	        <Route exact path = '/' component = {Front}/>
+	        <Route path = '/survey' component = {Quiz}/>
+	      </div>
+      </Router>
     )
   }
 }

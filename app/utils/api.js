@@ -1,6 +1,7 @@
 var axios = require('axios');
 
 module.exports = {
+
 	fetchJSONData: function() {
 		var encodedURI = window.encodeURI("http://date.jsontest.com/");
 
@@ -13,6 +14,7 @@ module.exports = {
 	fetchSurveys: function() {
 		var encodedURI = window.encodeURI("http://localhost:3000/survey");
 		var i = 0;
+		
 		return axios.get(encodedURI).then(function(response){			
 			var areas = response.data.areas;
 			var areaTitles = [];

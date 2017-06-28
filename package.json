@@ -4,7 +4,8 @@
   "description": "product survey app for 99x tecnology clients",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --open"
+    "start": "webpack-dev-server --open",
+    "api": "json-server --watch db.json --port 3000"
   },
   "babel": {
     "presets": [
@@ -26,6 +27,7 @@
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.4",
     "html-webpack-plugin": "^2.29.0",
+    "json-server": "^0.10.1",
     "style-loader": "^0.18.2",
     "webpack": "^3.0.0",
     "webpack-dev-server": "^2.5.0"

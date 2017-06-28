@@ -1,0 +1,19 @@
+{
+  "surveyDetails": [
+    {
+      "surveys": ["Digital Marketing", "Product Management", "UX", "Product Support", "Project Management"]
+    }
+  ],
+
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+
+  "profile": {
+    "name": "typicode"
+  }
+}

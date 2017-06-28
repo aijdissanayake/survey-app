@@ -1,19 +1,70 @@
 {
-  "surveyDetails": [
+    "survey":
     {
-      "surveys": ["Digital Marketing", "Product Management", "UX", "Product Support", "Project Management"]
-    }
-  ],
+        "title": ["Please select the area you would like to have the test upon"],
+        "areas": [
+            {
+                "title":"Digital Marketing",
+                "questions": [
+                    {
+                        "title":"How do you document personas?",
+                        "choices": [
+                            "on paper",
+                            "digital tool",
+                            "with customer"
+                        ]
+                    },
+                    {
+                        "title":"How do you do user research?",
+                        "choices": [
+                            "eye tracking",
+                            "digital tool",
+                            "with customer"
+                        ]
+                    }
+                ]
+            },
+            {
+                "title":"UX",
+                "questions": [
+                    {
+                        "title":"How do you document UX design?",
+                        "choices": [
+                            "with comments",
+                            "digital doc"
+                        ]
+                    },
+                    {
+                        "title":"How do you get user feedback?",
+                        "choices": [
+                            "eye tracking",
+                            "digital tool",
+                            "with customer"
+                        ]
+                    }
+                ]
+            },
+            {
+                "title":"Product Support",
+                "questions": [
+                    {
+                        "title":"How do you document UX design?",
+                        "choices": [
+                            "with comments",
+                            "digital doc"
+                        ]
+                    },
+                    {
+                        "title":"How do you get user feedback?",
+                        "choices": [
+                            "eye tracking",
+                            "digital tool",
+                            "with customer"
+                        ]
+                    }
+                ]
+            }
 
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+        ]
     }
-  ],
-
-  "profile": {
-    "name": "typicode"
-  }
 }

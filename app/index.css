@@ -19,6 +19,9 @@ ul {
 
 li {
 }
+ .choice {
+  display: inline-block;
+ }
 
 a {
   text-decoration: none;

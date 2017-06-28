@@ -14,7 +14,7 @@ module.exports = {
 	fetchSurveys: function() {
 		var encodedURI = window.encodeURI("http://localhost:3000/survey");
 		var i = 0;
-		
+
 		return axios.get(encodedURI).then(function(response){			
 			var areas = response.data.areas;
 			var areaTitles = [];
@@ -32,6 +32,24 @@ module.exports = {
 
 		return axios.get(encodedURI).then(function(response){
 			return response.data.title[0];
+		});
+
+	},
+
+	fetchquiz: function(area){
+		var encodedURI = window.encodeURI("http://localhost:3000/survey");
+		var i = 0;
+		
+		return axios.get(encodedURI).then(function(response){
+			var areas = response.data.areas;
+			var quiz= null;
+			for (i = 0; i < areas.length; i++){
+				if (areas[i].title == area) {
+					quiz = areas[i].questions;
+				}
+			}
+
+			return quiz;
 		});
 
 	}     

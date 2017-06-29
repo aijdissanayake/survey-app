@@ -10,6 +10,7 @@ class Quiz extends React.Component {
 			questionNo: 0,
 			quiz: null
 		};
+		console.log(this.props.match.params.area);
 
 		this.nextQuestion = this.nextQuestion.bind(this);
 		this.previousQuestion = this.previousQuestion.bind(this);
@@ -17,14 +18,13 @@ class Quiz extends React.Component {
 
 	componentDidMount(){
 
-		api.fetchquiz(this.props.area).then(function(quiz) {
+		api.fetchquiz(this.props.match.params.area).then(function(quiz) {
 
 			this.setState(function() {
 				return {
 					quiz:quiz
 				}
 			});
-			console.log(quiz);
 		}.bind(this));
 	}
 

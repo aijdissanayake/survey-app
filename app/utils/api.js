@@ -39,7 +39,7 @@ module.exports = {
 	fetchquiz: function(area){
 		var encodedURI = window.encodeURI("http://localhost:3000/survey");
 		var i = 0;
-		
+
 		return axios.get(encodedURI).then(function(response){
 			var areas = response.data.areas;
 			var quiz= null;
@@ -76,4 +76,6 @@ module.exports = {
 //   					</li>
 //   					)
 //   			},this)}
-//   			</ul>
+//   			</ul>\
+//<Route path = '/:survey' component = {(props) => <Quiz area="UX"/>} />
+// <Link className = 'button' to={{ pathname: '/survey', area: "Digital Marketing" }} >survey</Link>

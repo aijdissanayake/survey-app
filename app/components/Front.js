@@ -92,11 +92,13 @@ class Front extends React.Component {
 // rendering stateless components
 
 function AreaDesc (props){
+	var url = "/" + props.selectedAreaTitle;
 	return (
 		<div className = 'surveys' >
 		<h3> Area Description Goes Here</h3>
 		<p> {props.selectedAreaTitle} </p>
-		<Link className = 'button' to='/survey'>survey</Link>
+		<Link className = 'button' to={url}>survey</Link>
+		
 		</div>
 		)
 }

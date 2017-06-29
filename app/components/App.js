@@ -12,7 +12,7 @@ class App extends React.Component {
     	<Router>
 	      <div className='container'>
 	        <Route exact path = '/' component = {Front}/>
-	        <Route path = '/survey' component = {(props) => <Quiz area="UX"/>} />
+	        <Route path = '/:area' component = {Quiz} />
 	      </div>
       </Router>
     )

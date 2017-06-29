@@ -64,6 +64,8 @@ p{
   display: block;
   padding: 7px 0;
   margin: 10px auto;
+  display: inline-block;
+  align-self: center;
 }
 
 .button:hover:enabled {

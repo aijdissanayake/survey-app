@@ -26,6 +26,7 @@ class Quiz extends React.Component {
 				}
 			});
 		}.bind(this));
+
 	}
 
 	nextQuestion(){
@@ -60,15 +61,39 @@ class Quiz extends React.Component {
 		}
 		else{
 			var choices = this.state.quiz[this.state.questionNo].choices;
-			return (
+			if(this.state.questionNo === 0){
+				return (
 				<div>
 				<h1>Survey Quiz</h1>
 				<Question title = {this.state.quiz[this.state.questionNo].title} choices={choices}/>
 				<Next onClick = {this.nextQuestion}/>
+				<Link className='button' to='/'>Change Area</Link>
+				</div>
+				)
+			}
+			else if(this.state.questionNo === this.state.quiz.length - 1){
+				return (
+				<div>
+				<h1>Survey Quiz</h1>
+				<Question title = {this.state.quiz[this.state.questionNo].title} choices={choices}/>
 				<Back onClick = {this.previousQuestion}/>
 				<Link className='button' to='/'>Change Area</Link>
 				</div>
 				)
+
+			}
+			else{
+				return (
+					<div>
+					<h1>Survey Quiz</h1>
+					<Question title = {this.state.quiz[this.state.questionNo].title} choices={choices}/>
+					<Next onClick = {this.nextQuestion}/>
+					<Back onClick = {this.previousQuestion}/>
+					<Link className='button' to='/'>Change Area</Link>
+					</div>
+					)				
+			}
+			
 		}
 	}
 }

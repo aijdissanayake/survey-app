@@ -21,6 +21,13 @@
                             "digital tool",
                             "with customer"
                         ]
+                    },
+                    {
+                        "title":"What is the area product related to?",
+                        "choices": [
+                            "with comments",
+                            "digital doc"
+                        ]
                     }
                 ]
             },

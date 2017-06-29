@@ -8,7 +8,8 @@ class Quiz extends React.Component {
 		super(props);
 		this.state = {
 			questionNo: 0,
-			quiz: null
+			quiz: null,
+			markedPattern: [],
 		};
 		console.log(this.props.match.params.area);
 
@@ -19,13 +20,35 @@ class Quiz extends React.Component {
 	componentDidMount(){
 
 		api.fetchquiz(this.props.match.params.area).then(function(quiz) {
-
+			console.log(quiz);
 			this.setState(function() {
 				return {
 					quiz:quiz
 				}
 			});
+		var markedPattern = [];	
+
+		for (var i = 0; i <quiz.length ; i++) {
+			var pattern = [];
+
+			for (var j = 0 ; j < quiz[i].choices.length; j++) {
+				pattern.push(false);
+			}
+			markedPattern.push(pattern);
+		}
+
+		this.setState(function() {
+				return {
+					markedPattern:markedPattern
+				}
+			});
+
 		}.bind(this));
+
+
+	}
+
+	updatechoice(){
 
 	}
 
@@ -107,7 +130,7 @@ function Question (props){
 		{props.choices.map(function(choice){
 			return(
 				<li key={choice}>
-				<input className ='choice' type="checkbox" name="test" value="test"/> 
+				<input className ='choice' type="checkbox" name="test" value="test" checked/> 
 				<div className ='choice' >{choice} </div>
 				</li>
 				)

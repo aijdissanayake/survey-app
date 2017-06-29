@@ -11,7 +11,8 @@ class Quiz extends React.Component {
 			quiz: null
 		};
 
-		//this.updateSurvey = this.updateSurvey.bind(this);
+		this.nextQuestion = this.nextQuestion.bind(this);
+		this.previousQuestion = this.previousQuestion.bind(this);
 	}
 
 	componentDidMount(){
@@ -25,6 +26,26 @@ class Quiz extends React.Component {
 			});
 			console.log(quiz);
 		}.bind(this));
+	}
+
+	nextQuestion(){
+
+		this.setState(function() {
+			var next = this.state.questionNo + 1; 
+			return {
+				questionNo : next
+			}
+		});
+	}
+
+	previousQuestion(){
+
+		this.setState(function() {
+			var next = this.state.questionNo - 1; 
+			return {
+				questionNo : next
+			}
+		});
 	}
 
 	render() {
@@ -43,12 +64,15 @@ class Quiz extends React.Component {
 				<div>
 				<h1>Survey Quiz</h1>
 				<Question title = {this.state.quiz[this.state.questionNo].title} choices={choices}/>
+				<Next onClick = {this.nextQuestion}/>
+				<Back onClick = {this.previousQuestion}/>
 				<Link className='button' to='/'>Change Area</Link>
 				</div>
 				)
 		}
 	}
 }
+
 
 function Question (props){
 	return (
@@ -57,17 +81,33 @@ function Question (props){
 		<ol className = 'surveys'>
 		{props.choices.map(function(choice){
 			return(
-				<li 
-				//style = {areaTitle === props.selectedAreaTitle ? { color: 'orange'} : null }
-				//onClick= {props.onClick.bind(null,areaTitle)}	    				
-				key={choice}>
-
+				<li key={choice}>
 				<input className ='choice' type="checkbox" name="test" value="test"/> 
-					<div className ='choice' >{choice} </div>
+				<div className ='choice' >{choice} </div>
 				</li>
 				)
 		})}
 		</ol>
+		</div>
+		)
+}
+
+function Next (props) {
+	return (
+		<div
+		className = 'next'
+		onClick = {props.onClick}>
+		Next	
+		</div>
+		)
+}
+
+function Back (props) {
+	return (
+		<div
+		className = 'next'
+		onClick = {props.onClick}>
+		Back	
 		</div>
 		)
 }

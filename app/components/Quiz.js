@@ -15,6 +15,7 @@ class Quiz extends React.Component {
 
 		this.nextQuestion = this.nextQuestion.bind(this);
 		this.previousQuestion = this.previousQuestion.bind(this);
+		this.updateChoice = this.updateChoice.bind(this);
 	}
 
 	componentDidMount(){
@@ -48,8 +49,12 @@ class Quiz extends React.Component {
 
 	}
 
-	updatechoice(){
-
+	updateChoice(e){
+		 console.log(e.target.id);
+		 console.log(this.state.questionNo);
+		 var markedPattern = this.state.markedPattern;
+		 markedPattern[this.state.questionNo][e.target.id] = markedPattern[this.state.questionNo][e.target.id] ? false : true ;
+		 console.log(markedPattern);
 	}
 
 	nextQuestion(){
@@ -73,7 +78,7 @@ class Quiz extends React.Component {
 	}
 
 	render() {
-		if(this.state.quiz == null){
+		if(this.state.quiz == null || this.state.markedPattern.length == 0){
 			return (
 				<div>
 				<h1>Survey Quiz</h1>
@@ -85,10 +90,12 @@ class Quiz extends React.Component {
 		else{
 			var choices = this.state.quiz[this.state.questionNo].choices;
 			if(this.state.questionNo === 0){
+				console.log(this.state.markedPattern.length);
 				return (
 				<div>
 				<h1>Survey Quiz</h1>
-				<Question title = {this.state.quiz[this.state.questionNo].title} choices={choices}/>
+				<Question title = {this.state.quiz[this.state.questionNo].title} questionNo = {this.state.questionNo} 
+				choices={choices} onClick = {this.updateChoice} markedPattern = {this.state.markedPattern}/>
 				<Next onClick = {this.nextQuestion}/>
 				<Link className='button' to='/'>Change Area</Link>
 				</div>
@@ -98,7 +105,8 @@ class Quiz extends React.Component {
 				return (
 				<div>
 				<h1>Survey Quiz</h1>
-				<Question title = {this.state.quiz[this.state.questionNo].title} choices={choices}/>
+				<Question title = {this.state.quiz[this.state.questionNo].title} questionNo = {this.state.questionNo} 
+				choices={choices} onClick = {this.updateChoice} markedPattern = {this.state.markedPattern}/>
 				<Back onClick = {this.previousQuestion}/>
 				<Link className='button' to='/'>Change Area</Link>
 				</div>
@@ -109,7 +117,8 @@ class Quiz extends React.Component {
 				return (
 					<div>
 					<h1>Survey Quiz</h1>
-					<Question title = {this.state.quiz[this.state.questionNo].title} choices={choices}/>
+					<Question title = {this.state.quiz[this.state.questionNo].title} questionNo = {this.state.questionNo} 
+					choices={choices} onClick = {this.updateChoice} markedPattern = {this.state.markedPattern}/>
 					<Next onClick = {this.nextQuestion}/>
 					<Back onClick = {this.previousQuestion}/>
 					<Link className='button' to='/'>Change Area</Link>
@@ -123,17 +132,22 @@ class Quiz extends React.Component {
 
 
 function Question (props){
+	console.log(props.markedPattern);
 	return (
 		<div className = 'title'>			
 		<h3>{props.title}</h3>
 		<ol className = 'surveys'>
-		{props.choices.map(function(choice){
+		{props.choices.map(function(choice, index){
+			var key = index.toString() +  props.questionNo.toString()
 			return(
-				<li key={choice}>
-				<input className ='choice' type="checkbox" name="test" value="test" checked/> 
-				<div className ='choice' >{choice} </div>
-				</li>
+					<li key={key} >
+					{props.markedPattern[props.questionNo][index]? 
+					<input id = {index} onChange = {props.onClick} className ='choice' type="checkbox" name="test" value="test" checked/>
+					: <input id = {index} onChange = {props.onClick} className ='choice' type="checkbox" name="test" value="test" /> }
+					<div className ='choice' >{choice} </div>
+					</li>
 				)
+			
 		})}
 		</ol>
 		</div>

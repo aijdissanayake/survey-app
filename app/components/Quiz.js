@@ -16,6 +16,7 @@ class Quiz extends React.Component {
 		this.nextQuestion = this.nextQuestion.bind(this);
 		this.previousQuestion = this.previousQuestion.bind(this);
 		this.updateChoice = this.updateChoice.bind(this);
+		this.submitQuiz = this.submitQuiz.bind(this);
 	}
 
 	componentDidMount(){
@@ -77,6 +78,11 @@ class Quiz extends React.Component {
 		});
 	}
 
+	submitQuiz(){
+		console.log("submitted");
+		api.submitQuiz();
+	}
+
 	render() {
 		if(this.state.quiz == null || this.state.markedPattern.length == 0){
 			return (
@@ -108,6 +114,7 @@ class Quiz extends React.Component {
 				<Question title = {this.state.quiz[this.state.questionNo].title} questionNo = {this.state.questionNo} 
 				choices={choices} onClick = {this.updateChoice} markedPattern = {this.state.markedPattern}/>
 				<Back onClick = {this.previousQuestion}/>
+				<Link to='/'><Submit onClick = {this.submitQuiz}/></Link>
 				<Link className='button' to='/'>Change Area</Link>
 				</div>
 				)
@@ -170,6 +177,16 @@ function Back (props) {
 		className = 'next'
 		onClick = {props.onClick}>
 		Back	
+		</div>
+		)
+}
+
+function Submit (props) {
+	return (
+		<div
+		className = 'button'
+		onClick = {props.onClick}>
+		Submit	
 		</div>
 		)
 }

@@ -1,0 +1,57 @@
+function doGet(e) {
+  var params = JSON.stringify(e);
+  return HtmlService.createHtmlOutput(params);
+}
+
+function doGet(e) {
+  var params = e.parameter;
+  writeJSONtoSheet(params);
+  Logger.log(params);
+  
+}
+
+function getTitle(){
+  
+}
+
+function logSheetInfo() {
+  var sheet = SpreadsheetApp.getActiveSheet();
+  var data = sheet.getDataRange().getValues();
+  for (var i = 0; i < data.length; i++) {
+    Logger.log('Product name: ' + data[i][0]);
+    Logger.log('Product number: ' + data[i][1]);
+  }
+}
+
+function writeJSONtoSheet(json) {
+
+  var sheet = SpreadsheetApp.getActiveSheet();
+
+  var keys = Object.keys(json).sort();
+  var last = sheet.getLastColumn();
+  var header = sheet.getRange(1, 1, 1, last).getValues()[0];
+  var newCols = [];
+
+  for (var k = 0; k < keys.length; k++) {
+    if (header.indexOf(keys[k]) === -1) {
+      newCols.push(keys[k]);
+    }
+  }
+
+  if (newCols.length > 0) {
+    sheet.insertColumnsAfter(last, newCols.length);
+    sheet.getRange(1, last + 1, 1, newCols.length).setValues([newCols]);
+    header = header.concat(newCols);
+  }
+
+  var row = [];
+
+  for (var h = 0; h < header.length; h++) {
+    row.push(header[h] in json ? json[header[h]] : "");
+  }
+
+  sheet.appendRow(row);
+
+}
+
+https://docs.google.com/spreadsheets/d/1FlXLTC1EvK3oD6mMAZ8dJSNoUkXKJCLJ5uRWOfRT7zo/edit?usp=sharing

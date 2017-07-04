@@ -52,8 +52,35 @@ module.exports = {
 			return quiz;
 		});
 
+	},
+
+	submitQuiz: function(){
+
+		// axios.post('https://script.google.com/macros/s/AKfycbzyc2CG9xLM-igL3zuslSmNY2GewL5seTWpMpDIQr_5eCod7_U/exec', {
+		//     "ti": 'Fred',
+		//     "lastName": 'Flintstone'
+		//   });
+
+		 
+		axios({
+		  method:'post',
+		  url:'https://script.google.com/macros/s/AKfycbzyc2CG9xLM-igL3zuslSmNY2GewL5seTWpMpDIQr_5eCod7_U/exec',
+		  data: {
+		    "ti": 'Fred',
+		    "lastName": 'Flintstone'
+		  }
+		}).then(function (response) {
+		    console.log(response);
+		  })
+		  .catch(function (error) {
+		    console.log(error);
+		  });
+				
+
+
 	}     
 }
+
 // fetchSurveys: function() {
 // 		var encodedURI = window.encodeURI("http://localhost:3000/survey");
 

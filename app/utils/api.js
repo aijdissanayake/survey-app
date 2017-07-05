@@ -12,7 +12,7 @@ module.exports = {
 	},
 
 	fetchSurveys: function() {
-		var encodedURI = window.encodeURI("http://localhost:3000/survey");
+		var encodedURI = window.encodeURI("https://api.myjson.com/bins/1a445r");
 		var i = 0;
 
 		return axios.get(encodedURI).then(function(response){			
@@ -28,7 +28,7 @@ module.exports = {
 	},
 
 	fetchtitle: function() {
-		var encodedURI = window.encodeURI("http://localhost:3000/survey");
+		var encodedURI = window.encodeURI("https://api.myjson.com/bins/1a445r");
 
 		return axios.get(encodedURI).then(function(response){
 			return response.data.title[0];
@@ -37,7 +37,7 @@ module.exports = {
 	},
 
 	fetchquiz: function(area){
-		var encodedURI = window.encodeURI("http://localhost:3000/survey");
+		var encodedURI = window.encodeURI("https://api.myjson.com/bins/1a445r");
 		var i = 0;
 
 		return axios.get(encodedURI).then(function(response){

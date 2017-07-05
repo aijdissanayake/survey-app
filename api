@@ -58,3 +58,49 @@ function doGet(e) {
   return ContentService.createTextOutput(JSON.stringify(survey)).setMimeType(ContentService.MimeType.JSON);
   
 }
+
+function doPost(e){
+  
+  var doc = SpreadsheetApp.getActiveSpreadsheet();
+  var body = e.postData.contents;
+  var jsonString = e.postData.getDataAsString();
+  var jsonData = JSON.parse(jsonString);
+  
+  var sheet = doc.getSheetByName(jsonData.title);
+  var questions_array = [] ;
+  var choices_array = [];
+  var questions_n_choices = [];
+  var last_row = sheet.getLastRow();
+  var last_column = sheet.getLastColumn();
+  var q_row_data = sheet.getRange(last_row -1,1,last_row -1,last_column).getValues()[0];
+  var c_row_data = sheet.getRange(last_row,1,last_row,last_column).getValues()[0];
+  var q_set_no = c_row_data[0];
+  
+  for (var q =1; q<q_row_data.length; q++){
+    if(q_row_data[q]===""){break;}
+    questions_array.push(q_row_data[q]);
+  }
+  
+  for (var c =1; c<q_row_data.length; c++){
+    if(c_row_data[c]===""){break;}
+    choices_array.push(c_row_data[c].split(","));
+  }
+  
+  var res_sheet = doc.getSheetByName("Responses-"+jsonData.title);
+  var recieved_res_array = jsonData.choices;
+  var res_array = ["response_no"];
+  
+  for (i=0; i < choices_array.length ; i++){
+    var response = [];
+    for (j=0; j < choices_array[i].length ; j++){
+      if(recieved_res_array[i][j]){
+        response.push(choices_array[i][j]);
+      }
+    }
+    res_array.push(response.toString());
+  }
+  
+  res_sheet.appendRow(res_array);
+  
+  return ContentService.createTextOutput(JSON.stringify(res_array)).setMimeType(ContentService.MimeType.JSON);
+}

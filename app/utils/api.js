@@ -63,7 +63,7 @@ module.exports = {
 
 		 
 		axios({
-		  method:'post',
+		  method:'POST',
 		  url:'https://script.google.com/macros/s/AKfycbzyc2CG9xLM-igL3zuslSmNY2GewL5seTWpMpDIQr_5eCod7_U/exec',
 		  data: {
 		    "ti": 'Fred',
@@ -75,7 +75,15 @@ module.exports = {
 		  .catch(function (error) {
 		    console.log(error);
 		  });
-				
+
+		// axios.get('https://script.google.com/macros/s/AKfycbzyc2CG9xLM-igL3zuslSmNY2GewL5seTWpMpDIQr_5eCod7_U/exec')
+		//   .then(function (response) {
+		//     console.log(response);
+		//   })
+		//   .catch(function (error) {
+		//     console.log(error);
+		//   });
+
 
 
 	}     

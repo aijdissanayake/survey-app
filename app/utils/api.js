@@ -12,7 +12,7 @@ module.exports = {
 	},
 
 	fetchSurveys: function() {
-		var encodedURI = window.encodeURI("https://api.myjson.com/bins/1a445r");
+		var encodedURI = window.encodeURI("https://script.google.com/macros/s/AKfycbySehYgZd1ftj316wdNYQCchQ8GtTUZaTzQsmroosPX0kLY050/exec");
 		var i = 0;
 
 		return axios.get(encodedURI).then(function(response){			
@@ -28,7 +28,7 @@ module.exports = {
 	},
 
 	fetchtitle: function() {
-		var encodedURI = window.encodeURI("https://api.myjson.com/bins/1a445r");
+		var encodedURI = window.encodeURI("https://script.google.com/macros/s/AKfycbySehYgZd1ftj316wdNYQCchQ8GtTUZaTzQsmroosPX0kLY050/exec");
 
 		return axios.get(encodedURI).then(function(response){
 			return response.data.title[0];
@@ -37,7 +37,7 @@ module.exports = {
 	},
 
 	fetchquiz: function(area){
-		var encodedURI = window.encodeURI("https://api.myjson.com/bins/1a445r");
+		var encodedURI = window.encodeURI("https://script.google.com/macros/s/AKfycbySehYgZd1ftj316wdNYQCchQ8GtTUZaTzQsmroosPX0kLY050/exec");
 		var i = 0;
 
 		return axios.get(encodedURI).then(function(response){

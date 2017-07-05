@@ -1,0 +1,60 @@
+function doGet(e) {
+  
+  var doc = SpreadsheetApp.getActiveSpreadsheet();
+  var sheets = SpreadsheetApp.getActiveSpreadsheet().getSheets();
+  var sheets_array = [];
+  
+  if (sheets.length > 1) {
+    for(var i = 0 ; i < sheets.length ; i=i+2){
+      sheets_array.push(sheets[i].getName());
+    }
+  }
+  
+  var areas = [];
+  
+  for(var k = 0; k < sheets_array.length; k++){
+    var sheet = doc.getSheetByName(sheets_array[k]);
+    var questions_array = [] ;
+    var choices_array = [];
+    var questions_n_choices = [];
+    var last_row = sheet.getLastRow();
+    var last_column = sheet.getLastColumn();
+    var q_row_data = sheet.getRange(last_row -1,1,last_row -1,last_column).getValues()[0];
+    var c_row_data = sheet.getRange(last_row,1,last_row,last_column).getValues()[0];
+    var q_set_no = c_row_data[0];
+    
+    for (var q =1; q<q_row_data.length; q++){
+      if(q_row_data[q]===""){break;}
+      questions_array.push(q_row_data[q]);
+    }
+    
+    for (var c =1; c<q_row_data.length; c++){
+      if(c_row_data[c]===""){break;}
+      choices_array.push(c_row_data[c].split(","));
+    }
+    
+    for (var j =0; j<questions_array.length; j++){
+      var q_n_c = { 
+        "title"  : questions_array[j],
+        "choices": choices_array[j]   
+      };
+      questions_n_choices.push(q_n_c);
+    }
+    
+    var area = {
+      "title"   : sheet.getName(),
+      "questions": questions_n_choices
+    }
+    
+    areas.push(area);
+ }
+  
+  
+  var survey = {
+    "title": ["Please select the area you would like to have the test upon"],
+    "areas": areas  
+  }
+  
+  return ContentService.createTextOutput(JSON.stringify(survey)).setMimeType(ContentService.MimeType.JSON);
+  
+}

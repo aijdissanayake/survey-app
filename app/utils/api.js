@@ -56,19 +56,44 @@ module.exports = {
 
 	},
 
-	submitQuiz: function(){
+	submitQuiz: function(title, response){
+		console.log('response');
+		console.log(response);
+		console.log(title);
+		console.log('response');
 
-		var encodedURI = window.encodeURI("https://script.google.com/macros/s/AKfycbzyc2CG9xLM-igL3zuslSmNY2GewL5seTWpMpDIQr_5eCod7_U/exec");
+		var resp = {};
+		resp["title"] = title;
+		resp["choices"] = response;
+		resp = JSON.stringify(resp);
+
+
+		var encodedURI = window.encodeURI("https://script.google.com/macros/s/AKfycbySehYgZd1ftj316wdNYQCchQ8GtTUZaTzQsmroosPX0kLY050/exec?data="+resp);
+		var i = 0;
+
+		
+		return axios.get(encodedURI).then(function(response){
+			console.log(response.data);			
+			// var areas = response.data.areas;
+			// var areaTitles = [];
+			// for (i = 0; i < areas.length; i++){
+			// 	areaTitles.push(areas[i]['title']);
+			// }
+
+			// return areaTitles;
+		});
+
+		// var encodedURI = window.encodeURI("https://script.google.com/macros/s/AKfycbzyc2CG9xLM-igL3zuslSmNY2GewL5seTWpMpDIQr_5eCod7_U/exec");
 
 		var array = JSON.stringify({
   		"title": "Digital Marketing",
   		"choices":[[true,true,true],[true, true, true],[true, true, true]]
 		});
-		var url = 'https://script.google.com/macros/s/AKfycbzyc2CG9xLM-igL3zuslSmNY2GewL5seTWpMpDIQr_5eCod7_U/exec?resp=' + encodeURIComponent(array);
+		// var url = 'https://script.google.com/macros/s/AKfycbzyc2CG9xLM-igL3zuslSmNY2GewL5seTWpMpDIQr_5eCod7_U/exec?resp=' + encodeURIComponent(array);
 
-		return axios.get(encodedURI).then(function(response){
-			console.log(response);
-		});
+		// return axios.get(encodedURI).then(function(response){
+		// 	console.log(response);
+		// });
 
 		// axios.post('https://script.google.com/macros/s/AKfycbzyc2CG9xLM-igL3zuslSmNY2GewL5seTWpMpDIQr_5eCod7_U/exec', {
 		//     "ti": 'Fred',

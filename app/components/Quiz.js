@@ -28,6 +28,7 @@ class Quiz extends React.Component {
 					quiz:quiz
 				}
 			});
+
 		var markedPattern = [];	
 
 		for (var i = 0; i <quiz.length ; i++) {
@@ -78,9 +79,9 @@ class Quiz extends React.Component {
 		});
 	}
 
-	submitQuiz(){
+	submitQuiz(title,response){
 		console.log("submitted");
-		api.submitQuiz();
+		api.submitQuiz(title,response);
 	}
 
 	render() {
@@ -114,7 +115,7 @@ class Quiz extends React.Component {
 				<Question title = {this.state.quiz[this.state.questionNo].title} questionNo = {this.state.questionNo} 
 				choices={choices} onClick = {this.updateChoice} markedPattern = {this.state.markedPattern}/>
 				<Back onClick = {this.previousQuestion}/>
-				<Link to='/'><Submit onClick = {this.submitQuiz}/></Link>
+				<Link to='/'><Submit onClick = {this.submitQuiz.bind(null, this.props.match.params.area, this.state.markedPattern)}/></Link>
 				<Link className='button' to='/'>Change Area</Link>
 				</div>
 				)

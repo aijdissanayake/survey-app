@@ -11,7 +11,6 @@ class Quiz extends React.Component {
 			quiz: null,
 			markedPattern: [],
 		};
-		console.log(this.props.match.params.area);
 
 		this.nextQuestion = this.nextQuestion.bind(this);
 		this.previousQuestion = this.previousQuestion.bind(this);
@@ -22,7 +21,6 @@ class Quiz extends React.Component {
 	componentDidMount(){
 
 		api.fetchquiz(this.props.match.params.area).then(function(quiz) {
-			console.log(quiz);
 			this.setState(function() {
 				return {
 					quiz:quiz
@@ -52,11 +50,8 @@ class Quiz extends React.Component {
 	}
 
 	updateChoice(e){
-		 console.log(e.target.id);
-		 console.log(this.state.questionNo);
 		 var markedPattern = this.state.markedPattern;
 		 markedPattern[this.state.questionNo][e.target.id] = markedPattern[this.state.questionNo][e.target.id] ? false : true ;
-		 console.log(markedPattern);
 	}
 
 	nextQuestion(){
@@ -80,7 +75,6 @@ class Quiz extends React.Component {
 	}
 
 	submitQuiz(title,response){
-		console.log("submitted");
 		api.submitQuiz(title,response);
 	}
 
@@ -97,7 +91,6 @@ class Quiz extends React.Component {
 		else{
 			var choices = this.state.quiz[this.state.questionNo].choices;
 			if(this.state.questionNo === 0){
-				console.log(this.state.markedPattern.length);
 				return (
 				<div>
 				<h1>Survey Quiz</h1>
@@ -140,7 +133,6 @@ class Quiz extends React.Component {
 
 
 function Question (props){
-	console.log(props.markedPattern);
 	return (
 		<div className = 'title'>			
 		<h3>{props.title}</h3>
